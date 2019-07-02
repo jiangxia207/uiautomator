@@ -86,8 +86,12 @@ public class GenerateFile {
                     description = nodes.get(i).getAttributes().get("text");
                 }
 
-
-
+                if(description == null || description.length() == 0)
+                {
+                	continue;
+                }
+                String uid = "_"+ID.get6Uuid();
+                
                 if (mclass.equals("android.widget.TextView")) {
                     char[] chars = new char[1];
                     String str = mclass.substring(15, mclass.length());
@@ -104,19 +108,20 @@ public class GenerateFile {
                                 String rest = name[k].substring(1,name[k].length());
                                 name[k] = new StringBuffer(first).append(rest).toString();
                             }
-                            widgetName = widgetName+name[k];
+                            //widgetName = widgetName+name[k];
+                            widgetName = widgetName + uid;
                         }
                         	
 //                        writer.write("    public  PlainText  " + widgetName + ";\r\n");
                         writer.write("    public static final String " + widgetName + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + widgetName + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + widgetName + "_name =\""+ widgetName +"\";\r\n");
+                        writer.write("    public static final String " + widgetName + "_name =\""+ description +"\";\r\n");
                         
                     }else {
-                    	String name = str.replaceFirst(temp,temp.toLowerCase()) + "" + textViewNum;
+                    	String name = str.replaceFirst(temp,temp.toLowerCase()) + "" + uid;
                     	  writer.write("    public static final String " + name + "_by =\"XPATH\";\r\n");
                           writer.write("    public static final String " + name + " = \"" +  commonxpath + "\";\r\n");
-                          writer.write("    public static final String " + name + "_name =\""+ name +"\";\r\n");
+                          writer.write("    public static final String " + name + "_name =\""+ description +"\";\r\n");
                           
                         //writer.write("    public  PlainText  " + str.replaceFirst(temp,temp.toLowerCase()) + "" + textViewNum + ";\r\n");
                         textViewNum++;
@@ -142,19 +147,19 @@ public class GenerateFile {
                                 String rest = name[k].substring(1,name[k].length());
                                 name[k] = new StringBuffer(first).append(rest).toString();
                             }
-                            widgetName = widgetName+name[k];
+                            widgetName = widgetName+uid;
                         }
                         writer.write("    public static final String " + widgetName + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + widgetName + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + widgetName + "_name =\""+ widgetName +"\";\r\n");
+                        writer.write("    public static final String " + widgetName + "_name =\""+ description +"\";\r\n");
                         
                         //writer.write("    public  Text  " + widgetName + ";\r\n");
                     }else{
-                    	String name = str.replaceFirst(temp, temp.toLowerCase()) + "" + editTextNum;
+                    	String name = str.replaceFirst(temp, temp.toLowerCase()) + "" + uid;
                     	
                     	  writer.write("    public static final String " + name + "_by =\"XPATH\";\r\n");
                           writer.write("    public static final String " + name + " = \"" +  commonxpath + "\";\r\n");
-                          writer.write("    public static final String " + name + "_name =\""+ name +"\";\r\n");
+                          writer.write("    public static final String " + name + "_name =\""+ description +"\";\r\n");
                           
                         //writer.write("    public  Text  " + str.replaceFirst(temp, temp.toLowerCase()) + "" + editTextNum + ";\r\n");
                         editTextNum++;
@@ -180,20 +185,20 @@ public class GenerateFile {
                                 String rest = name[k].substring(1,name[k].length());
                                 name[k] = new StringBuffer(first).append(rest).toString();
                             }
-                            widgetName = widgetName+name[k];
+                            widgetName = widgetName+uid;
                         }
                         writer.write("    public static final String " + widgetName + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + widgetName + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + widgetName + "_name =\""+ widgetName +"\";\r\n");
+                        writer.write("    public static final String " + widgetName + "_name =\""+ description +"\";\r\n");
                         
                         //writer.write("    public  Click  " + widgetName + ";\r\n");
                     }else {
                         //writer.write("    public  Click  " + str.replaceFirst(temp, temp.toLowerCase()) + "" + buttonNum + ";\r\n");
                     	
-                    	String name = str.replaceFirst(temp, temp.toLowerCase()) + "" + buttonNum;
+                    	String name = str.replaceFirst(temp, temp.toLowerCase()) + "" + uid;
                     	writer.write("    public static final String " + name + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + name + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + name + "_name =\""+ name +"\";\r\n");
+                        writer.write("    public static final String " + name + "_name =\""+ description +"\";\r\n");
                         buttonNum++;
                     }
 
@@ -217,18 +222,18 @@ public class GenerateFile {
                                 String rest = name[k].substring(1,name[k].length());
                                 name[k] = new StringBuffer(first).append(rest).toString();
                             }
-                            widgetName = widgetName+name[k];
+                            widgetName = widgetName+uid;
                         }
                         writer.write("    public static final String " + widgetName + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + widgetName + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + widgetName + "_name =\""+ widgetName +"\";\r\n");
+                        writer.write("    public static final String " + widgetName + "_name =\""+ description +"\";\r\n");
                         
                         //writer.write("    public  Click  " + widgetName + ";\r\n");
                     }else {
-                      	String name = str.replaceFirst(temp, temp.toLowerCase()) + "" + checkBoxNum;
+                      	String name = str.replaceFirst(temp, temp.toLowerCase()) + "" + uid;
                     	writer.write("    public static final String " + name + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + name + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + name + "_name =\""+ name +"\";\r\n");
+                        writer.write("    public static final String " + name + "_name =\""+ description +"\";\r\n");
                         
                         //writer.write("    public  Click  " + str.replaceFirst(temp, temp.toLowerCase()) + "" + checkBoxNum + ";\r\n");
                         checkBoxNum++;
@@ -254,14 +259,14 @@ public class GenerateFile {
                                 String rest = name[k].substring(1,name[k].length());
                                 name[k] = new StringBuffer(first).append(rest).toString();
                             }
-                            widgetName = widgetName+name[k];
+                            widgetName = widgetName+uid;
                         }
                         writer.write("    public static final String " + widgetName + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + widgetName + " = \"" +  commonxpath + "\";\r\n");
                         writer.write("    public static final String " + widgetName + "_name =\""+ widgetName +"\";\r\n");
                        // writer.write("    public  Click  " + widgetName + ";\r\n");
                     }else {
-                    	String name =  str.replaceFirst(temp, temp.toLowerCase()) + "" + radioButtonNum;
+                    	String name =  str.replaceFirst(temp, temp.toLowerCase()) + "" + uid;
                     	writer.write("    public static final String " + name + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + name + " = \"" +  commonxpath + "\";\r\n");
                         writer.write("    public static final String " + name + "_name =\""+ name +"\";\r\n");
@@ -289,19 +294,19 @@ public class GenerateFile {
                                 String rest = name[k].substring(1,name[k].length());
                                 name[k] = new StringBuffer(first).append(rest).toString();
                             }
-                            widgetName = widgetName+name[k];
+                            widgetName = widgetName+uid;
                         }
                         writer.write("    public static final String " + widgetName + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + widgetName + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + widgetName + "_name =\""+ widgetName +"\";\r\n");
+                        writer.write("    public static final String " + widgetName + "_name =\""+ description +"\";\r\n");
                         
                         //writer.write("    public  Select  " + widgetName + ";\r\n");
                     }
                     else {
-                    	String name =  str.replaceFirst(temp, temp.toLowerCase()) + "" + spinnerNum;
+                    	String name =  str.replaceFirst(temp, temp.toLowerCase()) + "" + uid;
                     	writer.write("    public static final String " + name + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + name + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + name + "_name =\""+ name +"\";\r\n");
+                        writer.write("    public static final String " + name + "_name =\""+ description +"\";\r\n");
                         
                         //writer.write("    public  Select  " + str.replaceFirst(temp, temp.toLowerCase()) + "" + spinnerNum + ";\r\n");
                         spinnerNum++;
@@ -327,19 +332,19 @@ public class GenerateFile {
                                 String rest = name[k].substring(1,name[k].length());
                                 name[k] = new StringBuffer(first).append(rest).toString();
                             }
-                            widgetName = widgetName+name[k];
+                            widgetName = widgetName+uid;
                         }
                         writer.write("    public static final String " + widgetName + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + widgetName + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + widgetName + "_name =\""+ widgetName +"\";\r\n");
+                        writer.write("    public static final String " + widgetName + "_name =\""+ description +"\";\r\n");
                         
                         //writer.write("    public  View  " + widgetName + ";\r\n");
                     }else {
-                    	String name =  str.replaceFirst(temp, temp.toLowerCase()) + "" + viewNum;
+                    	String name =  str.replaceFirst(temp, temp.toLowerCase()) + "" + uid;
                     	
                     	writer.write("    public static final String " + name + "_by =\"XPATH\";\r\n");
                         writer.write("    public static final String " + name + " = \"" +  commonxpath + "\";\r\n");
-                        writer.write("    public static final String " + name + "_name =\""+ name +"\";\r\n");
+                        writer.write("    public static final String " + name + "_name =\""+ description +"\";\r\n");
                         
                         //writer.write("    public  View  " + str.replaceFirst(temp, temp.toLowerCase()) + "" + viewNum + ";\r\n");
                         viewNum++;
