@@ -349,7 +349,7 @@ public class GenerateFile {
                 }
             }
             writer.write("\r\n\r\n");
-            writer.write("    public "+className+"(AppiumDriver aDriver){super(aDriver);}\r\n\r\n");
+//            writer.write("    public "+className+"(AppiumDriver aDriver){super(aDriver);}\r\n\r\n");
             writer.write("}");
             writer.close();
         } catch (IOException e) {
