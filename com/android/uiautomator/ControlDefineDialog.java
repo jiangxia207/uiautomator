@@ -169,7 +169,7 @@ public class ControlDefineDialog extends Dialog {
 
         mXpathText.setText("xpath");
         mDescriptionText.setText("description");
-        mControlNameText.setText("controlName");
+        mControlNameText.setText("ele_" + ID.get6Uuid());
 
         return container;
     }
@@ -226,6 +226,7 @@ public class ControlDefineDialog extends Dialog {
             controlList.add(controlInfoMap);
             updateListView();
         }
+        mControlNameText.setText("ele_" + ID.get6Uuid());
     }
 
     public void delControl() {
